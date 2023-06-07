@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block body %}
+
+    <table  style="margin-top: 10px; margin-left:110px">
+        <tr>
+            <td style="padding-right: 25px;"></td>
+            <td style="padding-right: 20px;"><strong>CustomerId</strong></td>
+            <td style="padding-right: 20px;"><strong>Surname</strong></td>
+            <td style="padding-right: 20px;"><strong>Age</strong></td>
+            <td style="padding-right: 20px;"><strong>Gender</strong></td>
+            <td style="padding-right: 20px;"><strong>CreditScore</strong></td>
+            <td style="padding-right: 20px;"><strong>Exited</strong></td>
+        </tr>
+
+        {% for data in datas %}
+            <tr>
+                <td style="padding-right: 25px;"></td>
+                <td style="padding-right: 20px;"><a href="{{data.get_absolute_url}}">{{data.CustomerId}}</a></td>
+                <td style="padding-right: 20px;"><a href="{{data.get_absolute_url}}">{{data.Surname}}</a></td>
+                <td style="padding-right: 20px;">{{data.Age}}</td>
+                <td style="padding-right: 20px;">{{data.Gender}}</td>
+                <td style="padding-right: 20px;">{{data.CreditScore}}</td>
+                <td style="padding-right: 20px;">{{data.Exited}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <div class="pagination" style="margin-top:25px; margin-left:110px">
+        <span class="step-links">
+            {% if datas.has_previous %}
+                <a href="?page={{ datas.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current" style="margin-left:25px;">
+                Page {{ datas.number }} of {{ datas.paginator.num_pages }}.
+            </span>
+
+            {% if datas.has_next %}
+                <a href="?page={{ datas.next_page_number }}">next</a>
+            {% endif %}
+        </span>
+    </div>
+
+
+{% endblock body %}
+
+

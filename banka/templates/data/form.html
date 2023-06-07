@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block body %}
+    <form method="POST" style="margin-left: 135px;">
+        {% csrf_token %}
+        <h1 style="margin-top: 10px;">Form</h1>
+        <table >
+            {% for field in form %}
+                <tr style="margin-top: 20px;">
+                    <td style="padding-right: 20px;">{{ field.label_tag}}</td>
+                    <td style="padding-right: 20px;">{{ field }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <input class="btn btn-primary" type="submit" value="Send" style="margin-top: 20px;">
+    </form>
+
+{% endblock body %}

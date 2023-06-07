@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+
+    <table style="margin-top: 10px;">
+        <tr>
+            <td style="padding-right: 30px; padding-left: 20px;"></td>
+            <td style="padding-right: 20px;"><strong>CustomerId</strong></td>
+            <td style="padding-right: 20px;"><strong>Surname</strong></td>
+            <td style="padding-right: 20px;"><strong>CreditScore</strong></td>
+            <td style="padding-right: 20px;"><strong>Geography</strong></td>
+            <td style="padding-right: 20px;"><strong>Gender</strong></td>
+            <td style="padding-right: 20px;"><strong>Age</strong></td>
+            <td style="padding-right: 20px;"><strong>Tenure</strong></td>
+            <td style="padding-right: 20px;"><strong>Balance</strong></td>
+            <td style="padding-right: 20px;"><strong>NumOfProducts</strong></td>
+            <td style="padding-right: 20px;"><strong>HasCreditCard</strong></td>
+            <td style="padding-right: 20px;"><strong>IsActiveMember</strong></td>
+            <td style="padding-right: 20px;"><strong>EstimatedSalary</strong></td>
+            <td style="padding-right: 20px;"><strong>Exited</strong></td>
+        </tr>
+        <tr>
+            <td style="padding-right: 30px;"></td>
+            <td style="padding-right: 20px;">{{data.CustomerId}}</td>
+            <td style="padding-right: 20px;">{{data.Surname}}</td>
+            <td style="padding-right: 20px;">{{data.CreditScore}}</td>
+            <td style="padding-right: 20px;">{{data.Geography}}</td>
+            <td style="padding-right: 20px;">{{data.Gender}}</td>
+            <td style="padding-right: 20px;">{{data.Age}}</td>
+            <td style="padding-right: 20px;">{{data.Tenure}}</td>
+            <td style="padding-right: 20px;">{{data.Balance}}</td>
+            <td style="padding-right: 20px;">{{data.NumOfProducts}}</td>
+            <td style="padding-right: 20px;">{{data.HasCrCard}}</td>
+            <td style="padding-right: 20px;">{{data.IsActiveMember}}</td>
+            <td style="padding-right: 20px;">{{data.EstimatedSalary}}</td>
+            <td style="padding-right: 20px;">{{data.Exited}}</td>
+            {% if request.user.is_authenticated%}
+            <td style="padding-right: 10px;">
+                <form method="POST" action="{% url 'data:update' data.CustomerId %}">
+                    {% csrf_token %}
+                     <input class="btn btn-success btn-sm" type="submit" value="Update" style="background-color: green; color: white;">
+                </form>
+            </td>
+            <td>
+                <form method="POST" action="{% url 'data:delete' data.CustomerId %}">
+                    {% csrf_token %}
+                    <input class="btn btn-dangerous btn-sm" type="submit" value="Delete" style="background-color: red; color: white;">
+                </form>
+            </td>
+            {% endif %}
+        </tr>
+    </table>
+{% endblock body %}
+
